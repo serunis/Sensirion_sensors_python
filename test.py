@@ -46,6 +46,10 @@ while True:
         print('')
         lcd_str = "V:%-3d   %4.1f %2d P:%.3f C:%-4d" % (sgp40.get_voc_index(), sht31.temperature, sht31.humidity, sfa.hcho/1000, scd41.co2)
         lcd.text(lcd_str, 1)
+        if sgp40.get_voc_index() > 300:
+            lcd.backlight(True)
+        elif sgp40.get_voc_index() < 170:
+            lcd.backlight(False)
     
     cnt += 1
     time.sleep(1)
